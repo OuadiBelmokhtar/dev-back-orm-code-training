@@ -41,9 +41,9 @@ public class UsecaseOrmPatientRdvApplication implements CommandLineRunner {
         patientRepository.save(patient2);
         patientRepository.save(patient3);
 
-        Medecin medecin1=new Medecin(null, "Imane", "imane@gmail.com", "Génico", null);
-        Medecin medecin2=new Medecin(null, "Souad", "souad@gmail.com", "Dentist", null);
-        Medecin medecin3=new Medecin(null, "Samira", "samira@gmail.com", "Ophtamo", null);
+        Medecin medecin1=new Medecin(null, "Imane", "imane@gmail.com", "Génico", null, null);
+        Medecin medecin2=new Medecin(null, "Souad", "souad@gmail.com", "Dentist", null, null);
+        Medecin medecin3=new Medecin(null, "Samira", "samira@gmail.com", "Ophtamo", null, null);
 
         Consultation consultation1=new Consultation(null, new Date(), "rapport1", null);
         Consultation consultation2=new Consultation(null, new Date(), "rapport2", null);
