@@ -7,18 +7,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Patient {
+public class Medecin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
     private String email;
-    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
-    private List<RendezVous> rendezVousCollection=new ArrayList<>();
+    private String specialite;
+    @OneToMany(mappedBy = "medecin")
+    Collection<RendezVous> rendezVousCollection= new ArrayList<>();
 }
