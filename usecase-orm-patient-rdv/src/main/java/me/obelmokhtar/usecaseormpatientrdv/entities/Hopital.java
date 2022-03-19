@@ -12,11 +12,11 @@ import java.util.Collection;
 @Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor
-public class Hopitale {
+public class Hopital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String adresse;
-    @ManyToMany(mappedBy = "hopitales")
+    @ManyToMany(mappedBy = "hopitals", fetch = FetchType.EAGER)
     private Collection<Medecin> medecins=new ArrayList<>();
 }

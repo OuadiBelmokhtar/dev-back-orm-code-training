@@ -21,6 +21,6 @@ public class Medecin {
     private String specialite;
     @OneToMany(mappedBy = "medecin")
     Collection<RendezVous> rendezVousCollection= new ArrayList<>();
-    @ManyToMany(fetch = FetchType.EAGER)
-    Collection<Hopitale> hopitales=new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    Collection<Hopital> hopitals =new ArrayList<>();
 }
