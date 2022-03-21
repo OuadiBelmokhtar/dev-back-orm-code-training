@@ -9,6 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class UsecaseOrmPatientRdvApplication implements CommandLineRunner {
@@ -38,34 +41,60 @@ public class UsecaseOrmPatientRdvApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // ###########################   Tester le mapping des associations    #############################
-/*
-        Patient patient1 = new Patient(null, "ahmed", "ahmed@gmail.com", null);
-        Patient patient2 = new Patient(null, "taha", "taha@gmail.com", null);
-        Patient patient3 = new Patient(null, "karim", "karim@gmail.com", null);
+
+        Patient patient1 = new Patient();
+        Patient patient2 = new Patient();
+        Patient patient3 = new Patient();
+        patient1.setNom("ahmed");
+        patient1.setEmail("ahmed@gmail.com");
+        patient2.setNom("taha");
+        patient2.setEmail("taha@gmail.com");
+        patient3.setNom("karim");
+        patient3.setEmail("karim@gmail.com");
+
         patientRepository.save(patient1);
         patientRepository.save(patient2);
         patientRepository.save(patient3);
 
-        Medecin medecin1 = new Medecin(null, "Imane", "imane@gmail.com", "Génico", null, null);
-        Medecin medecin2 = new Medecin(null, "Souad", "souad@gmail.com", "Dentist", null, null);
-        Medecin medecin3 = new Medecin(null, "Samira", "samira@gmail.com", "Ophtamo", null, null);
+        Stream.of("Imane", "Souad", "Samira").forEach(name -> {
 
-        Consultation consultation1 = new Consultation(null, new Date(), "rapport1", null);
-        Consultation consultation2 = new Consultation(null, new Date(), "rapport2", null);
-        Consultation consultation3 = new Consultation(null, new Date(), "rapport3", null);
+            Medecin medecin = new Medecin();
+            medecin.setNom(name);
+            medecin.setEmail(name + "@gmail.com");
+            medecin.setSpecialite(Math.random() > 0.5 ? "Génico" : "Dentiste");
+            medecinRepository.save(medecin);
+        });
 
-        RendezVous rendezVous1 = new RendezVous(null, new Date(), new Date(), patient3, medecin1, consultation1);
-        RendezVous rendezVous2 = new RendezVous(null, new Date(), new Date(), patient3, medecin1, consultation2);
-        RendezVous rendezVous3 = new RendezVous(null, new Date(), new Date(), patient2, medecin2, consultation3);
+        RendezVous rendezVous1 = new RendezVous();
+        rendezVous1.setDateRdv(new Date());
+        rendezVous1.setHeureRdv(new Date());
+        rendezVous1.setStatutsRDV(StatusRDV.PENDING);
 
-        consultation1.setRendezVous(rendezVous1);
-        consultation2.setRendezVous(rendezVous2);
-        consultation3.setRendezVous(rendezVous3);
-
+        Patient p1 = patientRepository.findByNom("taha");
+        Medecin m1 = medecinRepository.findById(1L).get();
+        rendezVous1.setPatient(p1);
+        rendezVous1.setMedecin(m1);
         rdvRepository.save(rendezVous1);
-        rdvRepository.save(rendezVous2);
-        rdvRepository.save(rendezVous3);
-*/
+
+        // TODO: 3/21/22 Noter bien que pr que Hibernate exécute l'insertion automatiquement ds la BD,
+        //  il faut charger les enregistrement de la BD+utiliser le constr sans arg+les setters pr initialiser l'objet, non pas le constr d'init
+
+//        Consultation consultation1 = new Consultation(null, new Date(), "rapport1", null);
+//        Consultation consultation2 = new Consultation(null, new Date(), "rapport2", null);
+//        Consultation consultation3 = new Consultation(null, new Date(), "rapport3", null);
+//
+//        RendezVous rendezVous1 = new RendezVous(null, new Date(), new Date(), patient3, medecin1, consultation1);
+//        RendezVous rendezVous2 = new RendezVous(null, new Date(), new Date(), patient3, medecin1, consultation2);
+//        RendezVous rendezVous3 = new RendezVous(null, new Date(), new Date(), patient2, medecin2, consultation3);
+//
+//        consultation1.setRendezVous(rendezVous1);
+//        consultation2.setRendezVous(rendezVous2);
+//        consultation3.setRendezVous(rendezVous3);
+//
+//        rdvRepository.save(rendezVous1);
+//        rdvRepository.save(rendezVous2);
+//        rdvRepository.save(rendezVous3);
+
         /*List<RendezVous> rdvs1 = new ArrayList<>();
         rdvs1.add(rendezVous2);
         rdvs1.add(rendezVous3);
@@ -78,6 +107,7 @@ public class UsecaseOrmPatientRdvApplication implements CommandLineRunner {
 //        rendezVousCollection.forEach(System.out::println);
 // ###########################   Tester l'insertion pr le mapping de _*____*_    #############################
         // add un Medecin à un Hopital
+        /*
         Medecin medecin1 = new Medecin();
         Medecin medecin2 = new Medecin();
         Medecin medecin3 = new Medecin();
@@ -98,6 +128,7 @@ public class UsecaseOrmPatientRdvApplication implements CommandLineRunner {
         hopital1.setAdresse("Rabat");
         hopitalRepository.save(hopital1);
         hopitalService.addMedecinsToHopital(1L);
+        */
 
 
 // ###########################   Tester le mapping de l heritage    #############################

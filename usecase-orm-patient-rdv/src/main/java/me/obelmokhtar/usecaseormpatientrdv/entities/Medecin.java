@@ -19,7 +19,7 @@ public class Medecin {
     private String nom;
     private String email;
     private String specialite;
-    @OneToMany(mappedBy = "medecin")
+    @OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
     Collection<RendezVous> rendezVousCollection= new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
     Collection<Hopital> hopitals =new ArrayList<>();

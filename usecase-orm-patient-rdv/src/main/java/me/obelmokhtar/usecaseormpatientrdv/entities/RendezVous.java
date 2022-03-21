@@ -19,6 +19,7 @@ public class RendezVous {
     private Date dateRdv;
     @Temporal(TemporalType.TIME)
     private Date heureRdv;
+    private StatusRDV statutsRDV;
     @ManyToOne
     private Patient patient;
     @ManyToOne

@@ -16,8 +16,9 @@ import java.util.Date;
 @DiscriminatorColumn(name = "TYPE_PERS", length = 4) */
 /* Strategie JOINED
 @Inheritance(strategy = InheritanceType.JOINED)*/
+//@MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Personne {
+public abstract class Personne {
     @Id
     /* Strategie SINGLE_TABLE
     @GeneratedValue(strategy = GenerationType.IDENTITY) */
