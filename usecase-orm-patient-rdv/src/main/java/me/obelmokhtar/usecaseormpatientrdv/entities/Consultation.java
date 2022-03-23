@@ -1,5 +1,6 @@
 package me.obelmokhtar.usecaseormpatientrdv.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class Consultation {
     private Long id;
     private Date dateConsultation;
     private String rapport;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(fetch = FetchType.EAGER)
     private RendezVous rendezVous;
 

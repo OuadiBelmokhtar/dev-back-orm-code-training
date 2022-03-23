@@ -1,24 +1,27 @@
 package me.obelmokhtar.usecaseormpatientrdv.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.obelmokhtar.usecaseormpatientrdv.entities.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "ROLE")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Patient {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nom;
-    private String email;
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
-    private List<RendezVous> rendezVousCollection = new ArrayList<>();
+    @Column(unique = true)
+    private String roleName;
+    private String desc;
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+    private List<User> users=new ArrayList<>();
+
 }

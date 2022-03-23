@@ -1,5 +1,6 @@
 package me.obelmokhtar.usecaseormpatientrdv.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,8 @@ public class Medecin {
     private String nom;
     private String email;
     private String specialite;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
     Collection<RendezVous> rendezVousCollection= new ArrayList<>();
-    @ManyToMany(fetch = FetchType.LAZY)
-    Collection<Hopital> hopitals =new ArrayList<>();
+
 }
