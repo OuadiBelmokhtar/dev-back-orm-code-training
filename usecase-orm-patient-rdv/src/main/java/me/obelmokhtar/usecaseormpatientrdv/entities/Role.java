@@ -1,8 +1,10 @@
 package me.obelmokhtar.usecaseormpatientrdv.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import me.obelmokhtar.usecaseormpatientrdv.entities.User;
 
 import javax.persistence.*;
@@ -20,8 +22,11 @@ public class Role {
     private Long id;
     @Column(unique = true)
     private String roleName;
+    @Column(name="DESCRIPTION")
     private String desc;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // eviter la serialisation en mode lecture
+    @ToString.Exclude // empecher les invocations cycliques entre Role et User
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    private List<User> users=new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
 }

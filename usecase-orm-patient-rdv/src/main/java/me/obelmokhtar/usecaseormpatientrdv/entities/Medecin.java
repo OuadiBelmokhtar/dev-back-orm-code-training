@@ -20,7 +20,7 @@ public class Medecin {
     private String nom;
     private String email;
     private String specialite;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)// eviter la serialisation en mode lecture
     @OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
     Collection<RendezVous> rendezVousCollection= new ArrayList<>();
 

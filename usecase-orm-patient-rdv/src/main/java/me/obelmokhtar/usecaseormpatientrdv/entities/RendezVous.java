@@ -24,7 +24,7 @@ public class RendezVous {
     @Enumerated(EnumType.STRING)
     @Column(length = 15)
     private StatusRDV statutsRDV;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)// eviter la serialisation en mode lecture
     @ManyToOne
     private Patient patient;
     @ManyToOne

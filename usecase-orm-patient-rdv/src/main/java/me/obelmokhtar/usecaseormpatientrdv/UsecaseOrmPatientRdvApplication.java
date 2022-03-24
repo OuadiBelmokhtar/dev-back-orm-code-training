@@ -105,6 +105,11 @@ public class UsecaseOrmPatientRdvApplication implements CommandLineRunner {
         userService.addRoleToUser("Admin", "STAGIAIRE");
         userService.addRoleToUser("User1", "STAGIAIRE");
 
+        User admin = userService.authenticate("Admin", "123");
+        System.out.println("Successfully authenticated=>"+admin);
+
+
+
 // ###########################   Tester le mapping de l heritage    #############################
 //        Etudiant e1 = new Etudiant("Ahmed", new Date(), 14.5);
 //        Etudiant e2 = new Etudiant("Taha", new Date(), 13.0);

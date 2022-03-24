@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
-@AllArgsConstructor
+@AllArgsConstructor // pr faire l'injection par constructeur
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -46,6 +46,19 @@ public class UserServiceImpl implements UserService {
             user.getRoles().add(role);
             role.getUsers().add(user);
         }
-        //userRepository.save(user);
+        // userRepository.save(user); facultative, car deja fait lors du COMMIT de la transaction
+        // roleRepository.save(role); facultative, car deja fait lors du COMMIT de la transaction
+    }
+
+    @Override
+    public User authenticate(String username, String password) {
+        User user = findUserByUserName(username);
+        if (user == null) {
+            throw new IllegalArgumentException("Bad credentials");
+        }
+        if (user.getPassword().equals(password)) {
+            return user;
+        }
+        throw new RuntimeException("Bad credentials");
     }
 }

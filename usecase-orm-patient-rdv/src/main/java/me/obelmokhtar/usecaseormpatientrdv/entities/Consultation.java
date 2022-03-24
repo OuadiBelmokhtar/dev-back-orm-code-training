@@ -18,7 +18,7 @@ public class Consultation {
     private Long id;
     private Date dateConsultation;
     private String rapport;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)// eviter la serialisation en mode lecture
     @OneToOne(fetch = FetchType.EAGER)
     private RendezVous rendezVous;
 
