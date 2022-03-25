@@ -19,7 +19,7 @@ public class User {
     private String userId;
     @Column(name = "USER_NAME", unique = true, length = 30)
     private String username;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // ne pas serialiser le password lors de la lecture
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USERS_ROLES")

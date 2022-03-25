@@ -25,7 +25,7 @@ public class Role {
     @Column(name="DESCRIPTION")
     private String desc;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // eviter la serialisation en mode lecture
-    @ToString.Exclude // empecher les invocations cycliques entre Role et User
+    @ToString.Exclude // exclure cet attribut de toString() pr empecher les invocations cycliques entre Role et User
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private List<User> users = new ArrayList<>();
 
